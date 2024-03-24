@@ -4,11 +4,12 @@ from pydub import AudioSegment
 from flask import Flask, request, render_template
 
 app = Flask(__name__)
+a = os.getcwd()
 
 def trans_any_audio_types(filepath, input_audio_type, output_audio_type):
     song = AudioSegment.from_file(filepath, input_audio_type)
     filename = filepath.split(".")[0]
-    if os.getcwd() != "/Users/zhengwanlun/Desktop/Python/音乐转换器/static":
+    if os.getcwd() != a+"/static":
         print(os.getcwd())
         os.chdir('./static/')
     song.export(f"{filename}.{output_audio_type}", format=f"{output_audio_type}")
